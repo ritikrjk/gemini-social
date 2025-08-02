@@ -1,0 +1,1 @@
+The project is created from the command line gemini tool and more functionalities are yet to add.
