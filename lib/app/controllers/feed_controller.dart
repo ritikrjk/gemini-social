@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import '../models/post_model.dart';
+import 'package:gemini_social/app/models/post_model.dart';
 
 class FeedController extends GetxController {
-  final posts = <Post>[].obs;
+  final posts = <PostModel>[].obs;
 
   @override
   void onInit() {
@@ -11,32 +11,42 @@ class FeedController extends GetxController {
   }
 
   void fetchPosts() {
-    // In a real app, you would fetch this data from an API
-    posts.assignAll([
-      Post(
-        username: 'John Doe',
-        userImageUrl: 'https://randomuser.me/api/portraits/men/1.jpg',
-        postImageUrl: 'https://picsum.photos/seed/1/600/400',
-        caption: 'This is a beautiful landscape!',
-        likeCount: 123,
-        commentCount: 45,
+    // Simulate fetching posts from an API
+    final dummyPosts = [
+      PostModel(
+        id: '1',
+        userName: 'John Doe',
+        userAvatar: 'https://i.pravatar.cc/150?u=1',
+        content: 'Just enjoying a beautiful sunset! #nature #blessed',
+        imageUrl: 'https://picsum.photos/seed/1/400/300',
+        timeAgo: '2h ago',
+        likes: 1234,
+        comments: 345,
+        shares: 123,
       ),
-      Post(
-        username: 'Jane Smith',
-        userImageUrl: 'https://randomuser.me/api/portraits/women/2.jpg',
-        postImageUrl: 'https://picsum.photos/seed/2/600/400',
-        caption: 'Enjoying the sunset.',
-        likeCount: 234,
-        commentCount: 67,
+      PostModel(
+        id: '2',
+        userName: 'Jane Smith',
+        userAvatar: 'https://i.pravatar.cc/150?u=2',
+        content: 'My new Flutter project is coming along nicely! #flutterdev #coding',
+        imageUrl: 'https://picsum.photos/seed/2/400/300',
+        timeAgo: '5h ago',
+        likes: 567,
+        comments: 89,
+        shares: 45,
       ),
-      Post(
-        username: 'Peter Jones',
-        userImageUrl: 'https://randomuser.me/api/portraits/men/3.jpg',
-        postImageUrl: 'https://picsum.photos/seed/3/600/400',
-        caption: 'My new puppy!',
-        likeCount: 543,
-        commentCount: 123,
+      PostModel(
+        id: '3',
+        userName: 'AI Enthusiast',
+        userAvatar: 'https://i.pravatar.cc/150?u=3',
+        content: 'Gemini is a game-changer for developers. The possibilities are endless.',
+        imageUrl: 'https://picsum.photos/seed/3/400/300',
+        timeAgo: '1d ago',
+        likes: 8910,
+        comments: 1200,
+        shares: 500,
       ),
-    ]);
+    ];
+    posts.assignAll(dummyPosts);
   }
 }

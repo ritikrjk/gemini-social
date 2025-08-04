@@ -1,63 +1,71 @@
 import 'package:flutter/material.dart';
-import '../models/post_model.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:gemini_social/app/core/theme/app_theme.dart';
+import 'package:gemini_social/app/models/post_model.dart';
 
 class PostCard extends StatelessWidget {
-  final Post post;
+  final PostModel post;
 
-  const PostCard({Key? key, required this.post}) : super(key: key);
+  const PostCard({super.key, required this.post});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(8.0),
+      margin: EdgeInsets.symmetric(vertical: 8.h, horizontal: 16.w),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.r)),
+      elevation: 2,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(12.w),
             child: Row(
               children: [
                 CircleAvatar(
-                  backgroundImage: NetworkImage(post.userImageUrl),
+                  backgroundImage: NetworkImage(post.userAvatar),
                 ),
-                SizedBox(width: 8.0),
-                Text(
-                  post.username,
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                SizedBox(width: 12.w),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(post.userName, style: const TextStyle(fontWeight: FontWeight.bold)),
+                    Text(post.timeAgo, style: const TextStyle(color: Colors.grey)),
+                  ],
                 ),
+                const Spacer(),
+                IconButton(onPressed: () {}, icon: const Icon(Icons.more_horiz)),
               ],
             ),
           ),
-          Image.network(post.postImageUrl),
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(post.caption),
+            padding: EdgeInsets.symmetric(horizontal: 12.w),
+            child: Text(post.content),
           ),
+          SizedBox(height: 12.h),
+          Image.network(post.imageUrl),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    Icon(Icons.favorite_border),
-                    SizedBox(width: 4.0),
-                    Text(post.likeCount.toString()),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Icon(Icons.comment_outlined),
-                    SizedBox(width: 4.0),
-                    Text(post.commentCount.toString()),
-                  ],
-                ),
-                Icon(Icons.send_outlined),
+                _buildIconButton(Icons.favorite_border, post.likes.toString()),
+                _buildIconButton(Icons.comment_outlined, post.comments.toString()),
+                _buildIconButton(Icons.share_outlined, post.shares.toString()),
               ],
             ),
-          ),
+          )
         ],
       ),
+    );
+  }
+
+  Widget _buildIconButton(IconData icon, String text) {
+    return Row(
+      children: [
+        Icon(icon, color: Colors.grey),
+        SizedBox(width: 4.w),
+        Text(text, style: const TextStyle(color: Colors.grey)),
+      ],
     );
   }
 }
