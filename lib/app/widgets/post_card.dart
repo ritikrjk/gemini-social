@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gemini_social/app/core/theme/app_theme.dart';
 import 'package:gemini_social/app/models/post_model.dart';
 
 class PostCard extends StatelessWidget {
@@ -21,19 +20,26 @@ class PostCard extends StatelessWidget {
             padding: EdgeInsets.all(12.w),
             child: Row(
               children: [
-                CircleAvatar(
-                  backgroundImage: NetworkImage(post.userAvatar),
-                ),
+                CircleAvatar(backgroundImage: NetworkImage(post.userAvatar)),
                 SizedBox(width: 12.w),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(post.userName, style: const TextStyle(fontWeight: FontWeight.bold)),
-                    Text(post.timeAgo, style: const TextStyle(color: Colors.grey)),
+                    Text(
+                      post.userName,
+                      style: const TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      post.timeAgo,
+                      style: const TextStyle(color: Colors.grey),
+                    ),
                   ],
                 ),
                 const Spacer(),
-                IconButton(onPressed: () {}, icon: const Icon(Icons.more_horiz)),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.more_horiz),
+                ),
               ],
             ),
           ),
@@ -42,18 +48,37 @@ class PostCard extends StatelessWidget {
             child: Text(post.content),
           ),
           SizedBox(height: 12.h),
-          Image.network(post.imageUrl),
+          // Image.network(post.imageUrl),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 8.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _buildIconButton(Icons.favorite_border, post.likes.toString()),
-                _buildIconButton(Icons.comment_outlined, post.comments.toString()),
-                _buildIconButton(Icons.share_outlined, post.shares.toString()),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _buildIconButton(
+                      Icons.favorite_border,
+                      post.likes.toString(),
+                    ),
+                    SizedBox(width: 10.w),
+                    _buildIconButton(
+                      Icons.mode_comment_outlined,
+                      post.comments.toString(),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {},
+                      icon: Icon(Icons.bookmark_outline, color: Colors.grey),
+                    ),
+                  ],
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

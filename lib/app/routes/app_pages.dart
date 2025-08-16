@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
 import '../views/home/home_view.dart';
-import '../bindings/home_binding.dart';
+import '../bindings/home/home_binding.dart';
 import '../views/feed/feed_view.dart';
-import '../bindings/feed_binding.dart';
+import '../bindings/feed/feed_binding.dart';
 import '../views/auth/signin_view.dart';
 import '../views/auth/create_account_view.dart';
 import '../views/auth/forgot_password_view.dart';

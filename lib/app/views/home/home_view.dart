@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:gemini_social/app/controllers/home_controller.dart';
+import 'package:gemini_social/app/controllers/home/home_controller.dart';
 import 'package:gemini_social/app/views/feed/feed_view.dart';
 import 'package:gemini_social/app/views/chats/chats_view.dart';
 import 'package:gemini_social/app/views/notifications/notifications_view.dart';

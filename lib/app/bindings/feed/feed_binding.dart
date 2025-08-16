@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../controllers/feed_controller.dart';
+import '../../controllers/feed/feed_controller.dart';
 
 class FeedBinding extends Bindings {
   @override

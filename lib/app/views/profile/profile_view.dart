@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -13,7 +12,8 @@ class ProfileView extends StatelessWidget {
         title: const Text('Profile'),
         actions: [
           IconButton(
-            onPressed: () { // TODO: Implement logic
+            onPressed: () {
+              // TODO: Implement logic
               Get.toNamed('/settings');
             },
             icon: const Icon(Icons.settings_outlined),
@@ -49,10 +49,17 @@ class ProfileView extends StatelessWidget {
             ),
             SizedBox(height: 16.h),
             ElevatedButton(
-              onPressed: () { // TODO: Implement logic
+              onPressed: () {
+                // TODO: Implement logic
                 Get.toNamed('/edit-profile');
               },
-              child: const Text('Edit Profile'),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical: 5,
+                ),
+                child: const Text('Edit Profile'),
+              ),
             ),
             SizedBox(height: 16.h),
             LayoutBuilder(
@@ -61,10 +68,11 @@ class ProfileView extends StatelessWidget {
                   return GridView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 3,
-                    ),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 3,
+                        ),
                     itemCount: 6,
                     itemBuilder: (context, index) {
                       return _buildSettingsTile(index);
@@ -95,10 +103,7 @@ class ProfileView extends StatelessWidget {
           value,
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
-        Text(
-          label,
-          style: const TextStyle(fontSize: 14, color: Colors.grey),
-        ),
+        Text(label, style: const TextStyle(fontSize: 14, color: Colors.grey)),
       ],
     );
   }
@@ -117,7 +122,8 @@ class ProfileView extends StatelessWidget {
       leading: Icon(items[index]['icon'] as IconData),
       title: Text(items[index]['title'] as String),
       trailing: const Icon(Icons.chevron_right),
-      onTap: () { // TODO: Implement logic
+      onTap: () {
+        // TODO: Implement logic
       },
     );
   }

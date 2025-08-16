@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:gemini_social/app/controllers/feed_controller.dart';
+import 'package:gemini_social/app/controllers/feed/feed_controller.dart';
 import 'package:gemini_social/app/widgets/post_card.dart';
 
 class FeedView extends GetView<FeedController> {
@@ -10,23 +10,21 @@ class FeedView extends GetView<FeedController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Feed'),
-        actions: [
-          IconButton(
-            onPressed: () { // TODO: Implement logic
-              Get.toNamed('/new-post');
-            },
-            icon: const Icon(Icons.add_box_outlined),
-          ),
-        ],
+      appBar: AppBar(title: const Text('Feed')),
+      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+      floatingActionButton: FloatingActionButton(
+        shape: const CircleBorder(),
+        onPressed: () {},
+        child: Icon(Icons.add),
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
           final isTablet = constraints.maxWidth > 600.w;
           return Center(
             child: ConstrainedBox(
-              constraints: BoxConstraints(maxWidth: isTablet ? 600.w : double.infinity),
+              constraints: BoxConstraints(
+                maxWidth: isTablet ? 600.w : double.infinity,
+              ),
               child: Obx(
                 () => ListView.builder(
                   itemCount: controller.posts.length,
