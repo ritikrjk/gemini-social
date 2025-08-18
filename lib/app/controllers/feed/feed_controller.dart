@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:gemini_social/app/models/post_model.dart';
+import 'package:gemini_social/app/data/models/post_model.dart';
 
 class FeedController extends GetxController {
   final posts = <PostModel>[].obs;

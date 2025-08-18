@@ -1,3 +1,4 @@
+import 'package:gemini_social/app/bindings/post_detail/post_detail_binding.dart';
 import 'package:get/get.dart';
 
 import '../views/home/home_view.dart';
@@ -58,6 +59,7 @@ class AppPages {
     GetPage(
       name: _Paths.POST_DETAIL,
       page: () => const PostDetailView(),
+      binding: PostDetailBinding(),
     ),
     GetPage(
       name: _Paths.EDIT_PROFILE,

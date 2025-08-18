@@ -9,35 +9,65 @@ class FeedView extends GetView<FeedController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Feed')),
-      floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
-      floatingActionButton: FloatingActionButton(
-        shape: const CircleBorder(),
-        onPressed: () {},
-        child: Icon(Icons.add),
-      ),
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          final isTablet = constraints.maxWidth > 600.w;
-          return Center(
-            child: ConstrainedBox(
-              constraints: BoxConstraints(
-                maxWidth: isTablet ? 600.w : double.infinity,
-              ),
-              child: Obx(
-                () => ListView.builder(
-                  itemCount: controller.posts.length,
-                  itemBuilder: (context, index) {
-                    final post = controller.posts[index];
-                    return PostCard(post: post);
-                  },
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+        floatingActionButton: FloatingActionButton(
+          shape: const CircleBorder(),
+          onPressed: () {
+            Get.toNamed('/new-post');
+          },
+          child: const Icon(Icons.add),
+        ),
+        body: NestedScrollView(
+          headerSliverBuilder: (context, innerBoxIsScrolled) {
+            return [
+              SliverAppBar(
+                title: const Text('Feed'),
+                pinned: true,
+                floating: true,
+                bottom: const TabBar(
+                  tabs: [
+                    Tab(text: 'Newsfeed'),
+                    Tab(text: 'Following'),
+                  ],
                 ),
               ),
-            ),
-          );
-        },
+            ];
+          },
+          body: TabBarView(
+            children: [
+              _buildFeedList(),
+              _buildFeedList(), // Placeholder for "Following" feed
+            ],
+          ),
+        ),
       ),
+    );
+  }
+
+  Widget _buildFeedList() {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final isTablet = constraints.maxWidth > 600.w;
+        return Center(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxWidth: isTablet ? 600.w : double.infinity,
+            ),
+            child: Obx(
+              () => ListView.builder(
+                itemCount: controller.posts.length,
+                itemBuilder: (context, index) {
+                  final post = controller.posts[index];
+                  return PostCard(post: post);
+                },
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
